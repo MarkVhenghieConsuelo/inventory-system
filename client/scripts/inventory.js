@@ -13,6 +13,7 @@ let currentPage = 1;
 const rowsPerPage = 10;
 let allInventory = [];
 let originalInventory = [];
+const baseURL = 'http://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
   loadProducts();
@@ -99,7 +100,7 @@ function createPagination() {
 
 // Data Loaders
 function loadInventory() {
-  fetch('https://localhost:7150/api/Inventory')
+  fetch(`${baseURL}/api/Inventory`)
     .then(res => res.json())
     .then(data => {
       originalInventory = [...data];
@@ -111,7 +112,7 @@ function loadInventory() {
 }
 
 function loadProducts() {
-  fetch('https://localhost:7150/api/Product')
+  fetch(`${baseURL}/api/Product`)
     .then(res => res.json())
     .then(data => {
       allProducts = data;
@@ -136,7 +137,7 @@ function loadProducts() {
 }
 
 function loadCategory() {
-  fetch('https://localhost:7150/api/Category')
+  fetch(`${baseURL}/api/Category`)
     .then(res => res.json())
     .then(data => {
       allCategory = data;
@@ -171,7 +172,7 @@ document.getElementById('inventoryForm').addEventListener('submit', function (e)
     return Toastify({ text: "Please fill out all fields", backgroundColor: "orange", duration: 3000 }).showToast();
   }
 
-  fetch('https://localhost:7150/api/Inventory', {
+  fetch(`${baseURL}/api/Inventory`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -204,7 +205,7 @@ function deleteInventory(id) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(`https://localhost:7150/api/Inventory/${id}`, {
+      fetch(`${baseURL}/api/Inventory/${id}`, {
         method: 'DELETE'
       })
         .then(res => {
@@ -258,7 +259,7 @@ editInventoryForm.addEventListener('submit', function (e) {
     inventory_quantity: parseFloat(document.getElementById('edit_inventory_quantity').value)
   };
 
-  fetch(`https://localhost:7150/api/Inventory/${currentEditId}`, {
+  fetch(`${baseURL}/api/Inventory/${currentEditId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedProduct)

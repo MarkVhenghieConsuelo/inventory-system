@@ -12,6 +12,7 @@ const rowsPerPage = 10;
 let allCategory = [];
 let originalCategory = [];
 let editedCategoryId = null;
+const baseURL = 'http://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCategory();
@@ -91,7 +92,7 @@ function createPagination() {
 }
 
 function loadCategory() {
-    fetch('https://localhost:7150/api/Category')
+    fetch(`${baseURL}/api/Category`)
         .then(res => res.json())
         .then(data => {
             originalCategory = [...data];
@@ -112,7 +113,7 @@ document.getElementById('categoryForm').addEventListener('submit', function (e) 
         return Toastify({ text: "Please fill out all fields", backgroundColor: "orange", duration: 3000 }).showToast();
     }
 
-    fetch('https://localhost:7150/api/Category', {
+    fetch(`${baseURL}/api/Category`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -144,7 +145,7 @@ function deleteCategory(id) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`https://localhost:7150/api/Category/${id}`, {
+            fetch(`${baseURL}/api/Category/${id}`, {
                 method: 'DELETE'
             })
             .then(res => {
@@ -180,7 +181,7 @@ document.getElementById('editCategoryForm').addEventListener('submit', function 
         category_name: document.getElementById('edit_category_name').value,
     };
 
-    fetch(`https://localhost:7150/api/Category/${editedCategoryId}`, {
+    fetch(`${baseURL}/api/Category/${editedCategoryId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedCategory)

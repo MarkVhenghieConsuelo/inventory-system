@@ -14,6 +14,7 @@ const rowsPerPage = 10;
 let allSales = [];
 let originalSales = [];
 let currentEditSaleId = null;
+const baseURL = 'http://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
   loadSales();
@@ -99,7 +100,7 @@ function createPagination() {
 }
 
 function loadSales() {
-  fetch('https://localhost:7150/api/Sales')
+  fetch(`${baseURL}/api/Sales`)
     .then(res => res.json())
     .then(data => {
       originalSales = [...data];
@@ -111,7 +112,7 @@ function loadSales() {
 }
 
 function loadProducts(element) {
-  fetch('https://localhost:7150/api/Product')
+  fetch(`${baseURL}/api/Product`)
     .then(res => res.json())
     .then(data => {
       allProducts = data;
@@ -139,7 +140,7 @@ function loadProducts(element) {
 }
 
 function loadCategory() {
-  fetch('https://localhost:7150/api/Category')
+  fetch(`${baseURL}/api/Category`)
     .then(res => res.json())
     .then(data => {
       allCategory = data;
@@ -186,7 +187,7 @@ document.getElementById('saleForm').addEventListener('submit', function (e) {
     return Toastify({ text: "Please fill out all fields", backgroundColor: "orange", duration: 3000 }).showToast();
   }
 
-  fetch('https://localhost:7150/api/Sales', {
+  fetch(`${baseURL}/api/Sales`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -220,7 +221,7 @@ function deleteSale(id) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(`https://localhost:7150/api/Sales/${id}`, {
+      fetch(`${baseURL}/api/Sales/${id}`, {
         method: 'DELETE'
       })
         .then(res => {
@@ -274,7 +275,7 @@ document.getElementById('editSaleForm').addEventListener('submit', function (e) 
     sale_quantity: parseFloat(document.getElementById('edit_sale_quantity').value)
   };
 
-  fetch(`https://localhost:7150/api/Sales/${currentEditSaleId}`, {
+  fetch(`${baseURL}/api/Sales/${currentEditSaleId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedProduct)

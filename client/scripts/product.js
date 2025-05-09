@@ -13,6 +13,7 @@ const rowsPerPage = 10;
 let allProducts = [];
 let originalProducts = [];
 let editedProductId = null;
+const baseURL = 'http://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCategories('filterProductCategory');
@@ -97,7 +98,7 @@ function createPagination() {
 }
 
 function loadProducts() {
-    fetch('https://localhost:7150/api/Product')
+    fetch(`${baseURL}/api/Product`)
         .then(res => res.json())
         .then(data => {
             originalProducts = [...data];
@@ -109,7 +110,7 @@ function loadProducts() {
 }
 
 function loadCategories(selectElement) {
-    fetch('https://localhost:7150/api/Category')
+    fetch(`${baseURL}/api/Category`)
         .then(res => res.json())
         .then(data => {
             allCategory = data;
@@ -147,7 +148,7 @@ document.getElementById('productForm').addEventListener('submit', function (e) {
         return Toastify({ text: "Please fill out all fields", backgroundColor: "orange", duration: 3000 }).showToast();
     }
 
-    fetch('https://localhost:7150/api/Product', {
+    fetch(`${baseURL}/api/Product`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -181,7 +182,7 @@ function deleteProduct(id) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`https://localhost:7150/api/Product/${id}`, {
+            fetch(`${baseURL}/api/Product/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => {
@@ -232,7 +233,7 @@ document.getElementById('editProductForm').addEventListener('submit', function (
         product_category_id: parseInt(document.getElementById('edit_product_category_id').value)
     };
 
-    fetch(`https://localhost:7150/api/Product/${editedProductId}`, {
+    fetch(`${baseURL}/api/Product/${editedProductId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedProduct)
