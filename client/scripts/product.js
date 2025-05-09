@@ -13,7 +13,7 @@ const rowsPerPage = 10;
 let allProducts = [];
 let originalProducts = [];
 let editedProductId = null;
-const baseURL = 'http://mvc.tryasp.net';
+const baseURL = 'https://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCategories('filterProductCategory');

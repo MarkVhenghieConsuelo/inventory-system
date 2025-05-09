@@ -13,7 +13,7 @@ let currentPage = 1;
 const rowsPerPage = 10;
 let allInventory = [];
 let originalInventory = [];
-const baseURL = 'http://mvc.tryasp.net';
+const baseURL = 'https://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
   loadProducts();

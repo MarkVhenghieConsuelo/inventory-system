@@ -12,7 +12,7 @@ const rowsPerPage = 10;
 let allCategory = [];
 let originalCategory = [];
 let editedCategoryId = null;
-const baseURL = 'http://mvc.tryasp.net';
+const baseURL = 'https://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCategory();

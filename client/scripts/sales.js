@@ -14,7 +14,7 @@ const rowsPerPage = 10;
 let allSales = [];
 let originalSales = [];
 let currentEditSaleId = null;
-const baseURL = 'http://mvc.tryasp.net';
+const baseURL = 'https://mvc.tryasp.net';
 
 document.addEventListener('DOMContentLoaded', () => {
   loadSales();
