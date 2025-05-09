@@ -1,0 +1,35 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-color: #343a40;
+    color: white;
+    padding-top: 1.2rem;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+.sidebar a:hover {
+    background-color: #007bff;
+}
+.sidebar a.active {
+    background-color: #007bff;
+}
+.main-content {
+    width: 80%;
+    padding: 20px;
+}

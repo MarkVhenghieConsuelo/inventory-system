@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="../styles/global.css" rel="stylesheet">
+  <link href="../styles/product.css" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+        <h3 class="text-center text-white">Menu</h3>
+        <a href="../pages/product.html" class="active">Product</a>
+        <a href="../pages/inventory.html">Inventory</a>
+        <a href="../pages/sales.html">Sales</a>
+        <a href="../pages/maintenance.html">Maintenance</a>
+      </div>
+    
+      <div class="main">
+        <div class="productMain">
+            <!-- ADD FORM -->
+            <div class="container mt-5 mb-3">
+                <h2 class="mb-4">Product Form</h2>
+                <form id="productForm">
+                    <div class="row mb-3">
+                        <div class="col mb-6">
+                          <label for="product_name" class="form-label">Product</label>
+                          <input type="text" class="form-control" id="product_name" name="product_name">
+                        </div>  
+                        <div class="col mb-6">
+                          <label for="product_price" class="form-label">Price</label>
+                          <input type="number" class="form-control" id="product_price" name="product_price" step="0.01">
+                        </div>
+                        <div class="col mb-6">
+                          <label for="product_category_id" class="form-label">Category</label>
+                          <select class="form-select" id="product_category_id" name="product_category_id">
+                            <option selected disabled>Loading Category...</option>
+                          </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <!-- FILTER -->
+            <div class="container mt-5 productFilter">
+                <div class="row">
+                    <div class="col mr-1">
+                        <input type="text" class="form-control" placeholder="Search Product Name" id="searchProductName">
+                    </div>
+                    <div class="col mr-1">
+                        <select class="form-select" id="filterProductCategory"></select>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-secondary w-100" id="filterProductBtn">Apply</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-secondary w-100" id="clearFilterBtn">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-3 productTable">
+                <h2 class="mb-4">Products</h2>
+                <div class="table-responsive">
+                    <table class="table" id="products">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <div class="pages">
+
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary m-1" id="refreshProduct"><i class="bi bi-arrow-clockwise"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="productModal d-none">
+            <div class="modalContent">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-white">Edit Product</h4>
+                <button class="btn btn-sm btn-light" onclick="closeEditModal()">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+              <form id="editProductForm">
+                <div class="mb-3">
+                  <label class="form-label text-white">Name</label>
+                  <input type="text" class="form-control" id="edit_product_name" value="">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-white">Price</label>
+                  <input type="number" class="form-control" id="edit_product_price" value="" step="0.01">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-white">Category</label>
+                  <select class="form-select" id="edit_product_category_id">
+                    <option selected disabled>Loading Categories...</option>
+                  </select>
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                  <button type="submit" class="btn btn-success">Save</button>
+                  <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                </div>
+              </form>
+            </div>
+        </div>
+      </div>
+  </div>
+  <script src="../scripts/product.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
+</body>
+</html>
